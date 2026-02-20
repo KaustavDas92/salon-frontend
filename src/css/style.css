@@ -1,0 +1,183 @@
+.bt-primary{
+    background-color: red;
+ 
+}
+
+.profile_btn{
+border: none;
+border-radius: 50%;
+overflow: hidden;
+width: 70px;
+height: 60px;
+background-color: transparent;
+
+}
+.profile_img{
+    border-radius: 50%;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.profile_btn:hover{
+    opacity: 50%;
+}
+
+/* Navbar Starts */
+.login-btn{
+    margin-right: 2rem;
+}
+.navbar{
+    height: 120px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    color: white;
+
+     background:
+        radial-gradient(circle at 50% 40%, #5a0fa3 0%, transparent 45%),
+        radial-gradient(circle at center, #1a0033 0%, #000 85%);
+}
+
+.navbar .nav-link.text ,
+.navbar .nav-link.text.dropdown-toggle,
+.navbar .nav-link.text.dropdown-toggle.show {
+    color: white !important;
+    margin-left: 1rem;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 20px;
+    font-style: italic;
+    font-display: fallback;
+}
+
+.navbar .nav-link.text.dropdown-toggle::after{
+    display: none !important;
+}
+.navbar .dropdown:hover .dropdown-card {
+  display: block;
+  margin-top: 0; /* keeps it aligned */
+}
+.navbar .card-button{
+    background-color: transparent;
+    border: none;
+    border-radius: 10%;
+    padding: 3%;
+    width: 120%;
+    height: 50px;
+    transition: background-color 0.3s ease;
+
+}
+.card-button:hover {
+    background-color: #4f0495;       /* highlight color */
+    color: #fff;          
+}
+.navbar .dropdown-card{
+    background-color: #1a0033;
+    color: white;
+    width: 550%;
+    height: 700%;
+    border: 1px solid white;
+    border-radius: 8%;
+    padding: 20%;
+    position: absolute;
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;   
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.navbar .dropdown-card.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto; 
+}
+.navbar .arrow {
+    display: inline-block;
+    transition: transform 0.3s ease;
+    transform-origin: center; /* ensures rotation around center */
+
+}
+.navbar .arrow.up{
+    transform: rotate(180deg);
+}
+
+
+.card-image-container{
+   
+    object-fit: cover;
+    border-radius: 10%;
+}
+.card-image-container.fade {
+  opacity: 0;
+}
+
+@media (max-width: 992px) {
+    .navbar{
+    height: auto;
+    flex-direction: column;
+    padding:1rem
+    }
+    
+    .navbar .nav-link.text,
+    .navbar .nav-link.text.dropdown-toggle {
+    font-size: 15px;             /* slightly smaller text */
+    margin-left: 0;              /* remove left margin */
+    margin-bottom: 0.5rem;
+    }
+
+    .navbar .dropdown-card {
+    position: static;            /* no absolute positioning */
+    width: 100%;                 /* full width */
+    height: auto;                /* auto height */
+    padding: 1rem;
+    border-radius: 5px;
+  }
+    .card-image-container {
+        display: none;               /* hide preview images on tablets */
+    }
+
+    .navbar .card-button {
+        width: 100%;                 /* buttons fit container */
+    }
+    .login-btn{
+        display: none;
+    }
+
+}
+
+@media (max-width: 576px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .navbar-brand img {
+    width: 70px;                 /* shrink logo */
+    height: auto;
+  }
+
+  .navbar .nav-link.text {
+    font-size: 10px;             /* smaller text for phones */
+  }
+
+  .navbar .dropdown-card {
+    padding: 0.5rem;
+    font-size: 14px;
+  }
+
+  .navbar button {
+    width: 100%;                 /* Signin button full width */
+    margin-top: 0.5rem;
+  }
+
+    .login-btn{
+        display: none;
+    }
+
+}
+
+/* Navbar Ends */
+
+li{
+    list-style-type: none;
+    margin-bottom: 5px;
+}
