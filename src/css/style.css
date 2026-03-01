@@ -1,6 +1,65 @@
-.bt-primary{
-    background-color: red;
- 
+:root{
+    --background-style: radial-gradient(circle at 50% 40%, #5a0fa3 0%, transparent 45%),
+                        radial-gradient(circle at center, #1a0033 0%, #000 85%);
+
+    --primary-btn-background:linear-gradient(
+        to bottom left,
+        #840aa9,
+        #a50f9c,
+        #ce3481,
+        #e35573,
+        #ee7263,
+        #f79050
+    );
+}
+
+.btn{  
+    padding:10px 20px;
+    border-radius: 999px;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+}
+
+.btn-primary{
+    color: white;
+    background: var(--primary-btn-background);
+    transition: 
+        transform 0.25s ease ,
+        box-shadow 0.25 ease,
+        filter 0.25s ease;
+}
+
+.btn-primary:hover{
+    transform: translateY(-1px);
+    box-shadow: 0 10px 25px rgba(230, 77, 156, 0.35);
+    filter: brightness(1.05);
+}
+.btn-primary:active {
+  transform: translateY(0);
+  box-shadow: 0 8px 18px rgba(206, 52, 129, 0.3);
+}
+
+.btn-secondary {
+  color: #ffffff;
+  background: transparent;
+  transition: 
+        transform 0.25s ease ,
+        box-shadow 0.25 ease,
+        filter 0.25s ease;
+  border: 2px solid rgba(155, 31, 232, 0.7);
+  box-shadow: inset 0 0 0 0 rgba(155, 31, 232, 0.3);
+}
+
+.btn-secondary:hover {
+    transform: translateY(-1px);
+    background: rgba(155, 31, 232, 0.15);
+    box-shadow: inset 0 0 0 999px rgba(155, 31, 232, 0.15);
+}
+
+.btn-secondary:active {
+    transform: translateY(0);
+    background: rgba(155, 31, 232, 0.25);
 }
 
 .profile_btn{
@@ -23,20 +82,27 @@ background-color: transparent;
     opacity: 50%;
 }
 
+/* .input-box{
+    width: 100%;
+    background:transparent;
+    border: 1px solid;
+    border-radius: 10px;
+    padding: 5px 0;
+} */
+
 /* Navbar Starts */
 .login-btn{
     margin-right: 2rem;
 }
 .navbar{
+    width: 100%;
     height: 120px;
     display: flex;
     align-items: center;
     flex-direction: row;
     color: white;
-
-     background:
-        radial-gradient(circle at 50% 40%, #5a0fa3 0%, transparent 45%),
-        radial-gradient(circle at center, #1a0033 0%, #000 85%);
+    position: fixed;
+     background:var(--background-style)
 }
 
 .navbar .nav-link.text ,
@@ -50,13 +116,6 @@ background-color: transparent;
     font-display: fallback;
 }
 
-.navbar .nav-link.text.dropdown-toggle::after{
-    display: none !important;
-}
-.navbar .dropdown:hover .dropdown-card {
-  display: block;
-  margin-top: 0; /* keeps it aligned */
-}
 .navbar .card-button{
     background-color: transparent;
     border: none;
@@ -76,17 +135,21 @@ background-color: transparent;
     color: white;
     width: 550%;
     height: 700%;
-    border: 1px solid white;
-    border-radius: 8%;
+    border: none;
+    border-radius: 3em;
     padding: 20%;
     position: absolute;
     opacity: 0;
+    display: none;
+    visibility: hidden;
     transform: translateY(-10px);
     pointer-events: none;   
     transition: opacity 0.3s ease, transform 0.3s ease;
 }
 .navbar .dropdown-card.show {
   opacity: 1;
+  display: block;
+  visibility: visible;
   transform: translateY(0);
   pointer-events: auto; 
 }
@@ -109,6 +172,75 @@ background-color: transparent;
 .card-image-container.fade {
   opacity: 0;
 }
+
+/* Login Page Start*/
+
+.login-pg{
+    min-height: 100vh;
+    color: white;
+    background:var(--background-style);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.login-card{
+    width:fit-content;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    color:white;
+    border:none;
+    background: transparent;
+    padding: 20px 25px;
+    border-radius: 20px;
+    gap: 2em;
+
+}
+.input-form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+.input-field{
+    position: relative;
+    margin: 15px 0;
+    
+}
+.input-field input{
+    width: 100%;
+    background:transparent;
+    border: 1px solid;
+    border-radius: 10px;
+    padding: 5px 15px;
+}
+.input-field label{
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    font-size: 16px;
+    font-weight: 200;
+    pointer-events: none;
+    transform: translateY(-50%);
+}
+.input-field input:focus ~ label,
+.input-field input:valid ~ label{
+    top: 0;
+    font-size: 0.8em;
+    background: #6610f2;
+
+    /* color: lightblue; */
+    /* background: #5a0fa3; */
+}
+
+
+
+
+/* Login Page End*/
+
 
 @media (max-width: 992px) {
     .navbar{
@@ -143,6 +275,8 @@ background-color: transparent;
     }
 
 }
+
+
 
 @media (max-width: 576px) {
   .navbar {
