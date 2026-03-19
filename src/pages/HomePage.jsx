@@ -4,7 +4,7 @@ return (
     <>
       
         <TopBar/>
-
+            
             <button className='bg-primary'>Hello Home </button>
     </>
 )}
