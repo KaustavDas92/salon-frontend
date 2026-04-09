@@ -38,6 +38,14 @@ const LoginPage = () => {
         console.log("email=",email)
         console.log("password=",password)
     }
+
+    function resetUserFields(){
+        setName("")
+        setEmail("")
+        setPhone("")
+        setPassword("")
+        setConfirmPassword("")
+    }
     async function handleRegistration(e){
         
         let userData={
@@ -51,6 +59,9 @@ const LoginPage = () => {
         if(validateUserData()){
 
            const response= await registerUser(userData)
+           if(response){
+                resetUserFields()
+           }
         }
         
     }

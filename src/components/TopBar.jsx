@@ -49,7 +49,7 @@ const TopBar=()=> {
     <nav className="navbar navbar-expand-lg ">
       <div className="container-fluid">
         <a className="navbar-brand" href="/about">
-          <img src={logo} width="100" height="100" alt='logo'/>
+          <img src={logo} width="90" height="90" alt='logo'/>
 
         </a>
 

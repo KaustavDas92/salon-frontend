@@ -1,11 +1,11 @@
 import TopBar from "../components/TopBar";
+import Hero from "../components/Hero";
 const HomePage = () =>{
 return (
     <>
       
         <TopBar/>
-            
-            <button className='bg-primary'>Hello Home </button>
+        <Hero />
     </>
 )}
 
