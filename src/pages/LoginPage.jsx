@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import logo from '../assets/bookmyglow_logo.png'
+import logo from '../assets/logos/bookmyglow_logo.png'
 import { useAuth } from '../contexts/AuthContext';
 import {toast} from 'react-toastify'
 
 const LoginPage = () => {
 
-    const {registerUser}= useAuth()
+    const {registerUser,loginUser}= useAuth()
     const [email,setEmail]=useState("")
     const [password,setPassword]= useState("")
     const [confirmPassword,setConfirmPassword]= useState("")
@@ -34,9 +34,21 @@ const LoginPage = () => {
         setSigninToggle(!signInToggle)
     }
 
-    function handleLogin(e){
+    async function handleLogin(){
         console.log("email=",email)
         console.log("password=",password)
+
+         let loginData={
+            "email":email,
+            "password":password,
+        }
+        if(validateUserData()){
+
+           const response= await loginUser(loginData)
+           if(response){
+                resetUserFields()
+           }
+        }
     }
 
     function resetUserFields(){
@@ -66,43 +78,56 @@ const LoginPage = () => {
         
     }
     function validateUserData(){
-        if(name === "" || email== "" || password == "" || confirmPassword == "" || password == "") {
-            toast.error("all fields must be filled")
-            return false
-        }
 
         let emailRegex= /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}(?:\.[a-zA-Z]{2,})?$/
-
-        if(!emailRegex.test(email)) {
-            toast.error("email validation failed")
-            return false;
-        }
-
         let phoneRegex= /^\+[0-9]{2}[0-9]{10}$/
-
-        if(!phoneRegex.test(phone)) {
-            toast.error("please enter phone number with country code and give space after it")
-            return false
-        }
         
         let passwordRegex=/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_.-])[a-zA-Z0-9!@#$%^&*._+=-]{8,}$/
+        console.log("signIn toggle= ", signInToggle)
+        if(signInToggle){
 
-        if(!passwordRegex.test(password)){
+            if(email== "" || password == "" ) {
+                toast.error("all fields must be filled")
+                return false
+            }
+            if(!passwordRegex.test(password)){
+                toast.error("Password needs to have atleast 1 lowercase, 1 Uppercase, 1 Special Character, 1 number and must be 8 characters long")
+                return false
+            }
+        }
+        else{
+
+            if(name === "" || email== "" || password == "" || confirmPassword == "" ||phone == "") {
+                toast.error("all fields must be filled")
+                return false
+            }
+            if(!passwordRegex.test(password)){
             toast.error("Password needs to have atleast 1 lowercase, 1 Uppercase, 1 Special Character, 1 number and must be 8 characters long")
             return false
-        }
-        if(!passwordRegex.test(confirmPassword)){
-            toast.error("Confirm Password needs to have atleast 1 lowercase, 1 Uppercase, 1 Special Character, 1 number and must be 8 characters long")
-            return false
-        }
-        if(password != confirmPassword){
-            toast.error("password and confirm password do not match")
-            return false;
-        }
+            }
+            if(!emailRegex.test(email)) {
+                toast.error("email validation failed")
+                return false;
+            }
 
-        
-
-        
+            if(!phoneRegex.test(phone)) {
+                toast.error("please enter phone number with country code and give space after it")
+                return false
+            }
+            
+            if(!passwordRegex.test(password)){
+                toast.error("Password needs to have atleast 1 lowercase, 1 Uppercase, 1 Special Character, 1 number and must be 8 characters long")
+                return false
+            }
+            if(!passwordRegex.test(confirmPassword)){
+                toast.error("Confirm Password needs to have atleast 1 lowercase, 1 Uppercase, 1 Special Character, 1 number and must be 8 characters long")
+                return false
+            }
+            if(password != confirmPassword){
+                toast.error("password and confirm password do not match")
+                return false;
+            }
+        }
 
         return true;
     }

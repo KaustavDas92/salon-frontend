@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import downarrow from '../assets/icons/down-chevron_8213476.png'
 import uparrow from '../assets/icons/up-chevron_8213544.png'
-import logo from '../assets/bookmyglow_logo.png'
+import logo from '../assets/logos/bookmyglow_logo.png'
 import profile_icon from '../assets/icons/profile.jpg'
 import { useAuth } from '../contexts/AuthContext'
 

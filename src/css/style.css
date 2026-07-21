@@ -1,6 +1,12 @@
 :root{
     --background-style: radial-gradient(circle at 50% 40%, #5a0fa3 0%, transparent 45%),
                         radial-gradient(circle at center, #1a0033 0%, #000 85%);
+    
+    --main-background-style: 
+            radial-gradient(circle at 20% 30%, hsla(270, 70%, 50%, 1),transparent 60%),
+            radial-gradient(circle at 80% 40%, hsla(200, 80%, 60%, 1),transparent 70%),
+            radial-gradient( circle at 50% 80%, hsla(120, 70%, 50%, 1), transparent 60% ),
+             hsla(270, 60%, 10%, 1);
 
     --primary-btn-background:linear-gradient(
         to bottom left,
@@ -82,6 +88,16 @@ background-color: transparent;
     opacity: 50%;
 }
 
+.image-caraosel{
+    border-radius: 10%;
+    margin: 1%;
+    height: 50%;
+    width: 50%;
+}
+
+.background{
+    background:var(--main-background-style)
+}
 /* .input-box{
     width: 100%;
     background:transparent;
@@ -89,6 +105,8 @@ background-color: transparent;
     border-radius: 10px;
     padding: 5px 0;
 } */
+
+
 
 /* Navbar Starts */
 .login-btn{
@@ -104,7 +122,7 @@ background-color: transparent;
     position: sticky;
     z-index: 1000;
     top: 0;
-     background:var(--background-style)
+    background:var(--background-style)
 
 }
 
@@ -296,7 +314,24 @@ background-color: transparent;
 
 
 }
+
 /* Hero Section End */
+
+/* Footer starts */
+.footer{
+    background: var(--background-style);
+    width: 100%;
+    padding: 0.5% 3%;
+    color: white;
+    font-size: 20px;
+    font-family: 'Verdana';
+    font-weight: 400;
+}
+.footer-icons{
+    width: 40px;
+    height: 40px;
+}
+/* Footer ends */
 
 @media (max-width: 992px) {
     .navbar{
