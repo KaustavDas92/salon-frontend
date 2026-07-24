@@ -245,6 +245,15 @@ background-color: transparent;
     margin: 10px 0;
     
 }
+.country-iso{
+   position: absolute;
+    width: 17%;
+    height: 90%;
+    border-radius: 8px;
+    padding: 5px 15px;
+    appearance: none;
+    margin: 2px 2px;
+}
 .input-field input{
     width: 100%;
     background:transparent;

@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import logo from '../assets/logos/bookmyglow_logo.png'
 import { useAuth } from '../contexts/AuthContext';
 import {toast} from 'react-toastify'
+import India from '../assets/flags/india.png'
+import Germany from '../assets/flags/germany.png'
 
 const LoginPage = () => {
 
@@ -12,7 +14,12 @@ const LoginPage = () => {
     const [name,setName]= useState("")
     const [phone,setPhone]= useState("")
     const [signInToggle,setSigninToggle]= useState(true)
-
+    
+    const [countryCodeList,setCountryCodeList]= useState([
+        {"code":"+91","flag": India},
+        {"code":"+49","flag": Germany},
+    ])
+    const [countryCode,setCountryCode]= useState(countryCodeList[0].code)
     function handleEmail(e){
         setEmail(e.target.value)
     }
@@ -27,6 +34,9 @@ const LoginPage = () => {
     }
     function handleConfirmPassword(e){
         setConfirmPassword(e.target.value)
+    }
+    function handleCountryCode(e){
+        setCountryCode(e.target.value)
     }
 
     function toggleLoginToRegistration(e){
@@ -80,7 +90,7 @@ const LoginPage = () => {
     function validateUserData(){
 
         let emailRegex= /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}(?:\.[a-zA-Z]{2,})?$/
-        let phoneRegex= /^\+[0-9]{2}[0-9]{10}$/
+        let phoneRegex= /^[0-9]{10}$/
         
         let passwordRegex=/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_.-])[a-zA-Z0-9!@#$%^&*._+=-]{8,}$/
         console.log("signIn toggle= ", signInToggle)
@@ -180,10 +190,18 @@ const LoginPage = () => {
                                     onChange={handleEmail} required="required"/>
                                     <label for="email">Email</label>
                                 </div>   
-                                <div className='input-field' >
-                                    <input id='phone' type='text' value={phone}
+                                <div className='input-field phone-input-field' >
+                                    <select className='country-iso' id='country_code' value={countryCode} onChange={handleCountryCode}>
+                                        {countryCodeList.map((item,index) => (
+                                            <option key={index} value={item.code}>
+                                               <img src={item.flag} alt={item.code} style={{width:'20px',height:'20px',marginRight:'5px'}} />
+                                            </option>
+                                        )) }
+                                        </select>
+                                    <input id='phone' type='tel' value={phone} 
                                     onChange={handlePhone} required="required"/>
-                                    <label for="phone">Phone</label>
+                                    
+                                    <label className='ms-4 p-1' for="phone">Phone</label>
                                 </div>   
                                 <div className='input-field' >
                                     <input id='password'  type='password' value={password} onChange={handlePassword} required="required" />
