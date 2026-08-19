@@ -27,6 +27,26 @@
     border: none;
 }
 
+.loader-overlay{
+    position: fixed;
+    display: flex;
+    z-index: 99999;
+    justify-content: center;
+    align-items: center;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.4)
+    
+}
+
+.eye-style{
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    right: 5px;
+    top: 2px;
+    cursor: pointer;
+}
+
 .btn-primary{
     color: white;
     background: var(--primary-btn-background);
@@ -245,21 +265,27 @@ background-color: transparent;
     margin: 10px 0;
     
 }
+.phone-wrapper{
+    position: relative;
+}
 .country-iso{
    position: absolute;
-    width: 17%;
-    height: 90%;
-    border-radius: 8px;
-    padding: 5px 15px;
-    appearance: none;
-    margin: 2px 2px;
+    background: transparent;
+    top: 5px;
+    left: 8px;
 }
+
 .input-field input{
     width: 100%;
     background:transparent;
     border: 1px solid;
     border-radius: 10px;
     padding: 5px 15px;
+}
+.phone-wrapper input{
+   /* padding-left: 45px; */
+    text-indent: 32px;
+
 }
 .input-field label{
     position: absolute;
@@ -270,6 +296,7 @@ background-color: transparent;
     pointer-events: none;
     transform: translateY(-50%);
 }
+
 .input-field input:focus ~ label,
 .input-field input:valid ~ label{
     top: 0;
@@ -331,8 +358,9 @@ background-color: transparent;
     background: var(--background-style);
     width: 100%;
     padding: 0.5% 3%;
+    margin-top: 1%;
     color: white;
-    font-size: 20px;
+    font-size: 16px;
     font-family: 'Verdana';
     font-weight: 400;
 }
@@ -340,6 +368,7 @@ background-color: transparent;
     width: 40px;
     height: 40px;
 }
+
 /* Footer ends */
 
 @media (max-width: 992px) {

@@ -7,6 +7,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import store from './redux/store';
 import { Provider } from 'react-redux'
+import Loader from './components/Loader';
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
     <Provider store={store}>
       <CookiesProvider>
         <AuthProvider>  
+          <Loader/>
           <Navigation/>
           <ToastContainer/>
         </AuthProvider>

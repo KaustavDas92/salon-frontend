@@ -4,15 +4,18 @@ import Config from "../Config/Config.json"
 import { toast } from "react-toastify";
 import {useDispatch} from 'react-redux'
 import { userStoreDetails } from "../redux/actions/AuthActions";
+import { act } from "react";
+
 
 const AuthContext=createContext()
 
 const AuthProvider = ({children}) =>{
+
     const [userData,setUserData]=useState()
-    const [isLoggedIn,setIsLoggedIn]=useState(false)
     const [accessToken,setAccessToken]=useState()
     const [loading,setLoading]=useState(false)
-
+    const dispatch =useDispatch()
+    
 
     async function loginUser(params) {
         try{
@@ -26,13 +29,28 @@ const AuthProvider = ({children}) =>{
                     },
                 }
             ).then((data) =>{
-                console.log(data)
-                
+                console.log(data)            
+                const actionData=userStoreDetails(data.data)
+                console.log("action data=",actionData)
+                dispatch(actionData)
                 setLoading(false)
+                toast.success("Login Successful")
+                return true;
             })
+            .catch((err) =>{
+                console.log("Error:- ", err)
+                setLoading(false)
+                toast.error(err)
+                return false
+            })
+
+            return response;
         }
         catch(error ){
             console.log(error)
+            toast.error(err)
+            setLoading(false)
+            return false
         }
     }
     async function registerUser(data){
@@ -47,26 +65,36 @@ const AuthProvider = ({children}) =>{
                     },
                 }
             ).then((data)=>{
-                console.log(data)
-                useDispatch(userStoreDetails(data.data))
-                // setAccessToken(data.data.accessToken)
-                // setLoading(false)
+                // console.log(data)
+                const actionData=userStoreDetails(data.data)
+                console.log("action data=",actionData)
+                dispatch(actionData)
+                setLoading(false)
+                toast.success("Registration Successful")
+                return true;
+                
             })
             .catch((err)=>{
                 toast.error(err)
                 setLoading(false)
+                return false
             })
+
+            return response
         }
         catch(error){
             console.log(error)
+            return false
         }
+
+        
     } 
 
     const value={
         userData,
-        isLoggedIn,
         registerUser,
-        loginUser
+        loginUser,
+        loading
     }
 
     return(

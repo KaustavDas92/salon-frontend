@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { useSelector } from 'react-redux'
 import downarrow from '../assets/icons/down-chevron_8213476.png'
 import uparrow from '../assets/icons/up-chevron_8213544.png'
 import logo from '../assets/logos/bookmyglow_logo.png'
@@ -6,7 +7,8 @@ import profile_icon from '../assets/icons/profile.jpg'
 import { useAuth } from '../contexts/AuthContext'
 
 const TopBar=()=> {
-  const {isLoggedIn,userData}= useAuth()
+  const isLoggedIn= useSelector((state) => state.auth.isLoggedIn)
+  const state= useSelector((state) => state)
   const [businessIconShow,setBusinessIconShow]=useState(false)
   const [featureIconShow,setFeatureIconShow]=useState(false)
   const [imageNavbar,SetImageNavbar]= useState('')
@@ -28,7 +30,7 @@ const TopBar=()=> {
     SetImageNavbar(businessList[0].img)
     setChunkedList(listChunk(businessList,3))
     console.log("is logged in=",isLoggedIn)
-    if(!isLoggedIn) setDisplayPicture(profile_icon)
+    if(isLoggedIn) setDisplayPicture(profile_icon)
 
   },[])
 
